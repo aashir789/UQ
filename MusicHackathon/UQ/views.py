@@ -47,3 +47,15 @@ def playLink(request):
 
     print Song.objects.all()
     return render(request, 'UQ/home.html', context)
+
+def upVote(request):
+    song_id = request.GET['id']
+    song = Song.objects.get(id=song_id)
+    song.song_score = song.song_score + 1
+    song.save()
+
+def downVote(request):
+    song_id = request.GET['id']
+    song = Song.objects.get(id=song_id)
+    song.song_score = song.song_score - 1
+    song.save()
