@@ -1,7 +1,9 @@
 function upvote(songid){
-    $.get( "/upVote", { id: "songid" } );
+    var url = "/upVote/"+songid
+    $.get(url);
 }
 
 function downvote(songid){
-    $.get( "/upVote", { id: "songid" } );
+    var url = "/downVote/"+songid
+    $.get( url );
 }

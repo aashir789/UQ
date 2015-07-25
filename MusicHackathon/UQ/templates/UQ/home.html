@@ -114,35 +114,16 @@
 	<div class="well">
 	  <div class="list-group">
 	    
-	    <li class="list-group-item"><b>Thinking out loud</b>
-	      <span style="float:right"><small>
+	    {% for song in songs.all  %}
+	    <li class="list-group-item"><b>{{song.song_url}}</b>
+	      <span style="float:right">{{song.song_score}}<small>
 		  <button onClick="upvote(1)" class="btn btn-primary btn-raised btn-xs">Up</button>
 		  <button onClick="downvote(1)" class="btn btn-danger  btn-raised btn-xs ">Down</button></small>
 	      </span>
 	    </li>
+	    {% endfor %}
 	    
-	    <li class="list-group-item"><b>Dapibus ac facilisis in</b>
-	      <span style="float:right"><small>
-		  <a href="javascript:void(0)" class="btn btn-primary btn-raised btn-xs">Up</a>
-		  <a href="javascript:void(0)" class="btn btn-danger  btn-raised btn-xs ">Down</a></small>
-	      </span>
-	    </li>
 	    
-	    <li class="list-group-item"><b>Dapibus ac facilisis in</b>
-	      <span style="float:right"><small>
-		  <a href="javascript:void(0)" class="btn btn-primary btn-raised btn-xs">Up</a>
-		  <a href="javascript:void(0)" class="btn btn-danger  btn-raised btn-xs ">Down</a></small>
-	      </span>
-	    </li>
-	    
-	    <li class="list-group-item"><b>Dapibus ac facilisis in</b>
-	      <span style="float:right"><small>
-		  <a href="javascript:void(0)" class="btn btn-primary btn-raised btn-xs">Up</a>
-		  <a href="javascript:void(0)" class="btn btn-danger  btn-raised btn-xs ">Down</a></small>
-	      </span>
-	    </li>
-	    
-
 	  </div>
 	</div>
       </div>
