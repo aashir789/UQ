@@ -19,13 +19,7 @@
     <script src="//cdn.jsdelivr.net/bootstrap.material-design/0.2.2/js/material.min.js"></script>
     <script src="//cdn.jsdelivr.net/bootstrap.material-design/0.2.2/js/ripples.min.js"></script>
     
-    
-    <script src="{% static 'socialnetwork/comments.js'  %}"></script>
-    <script src="{% static 'socialnetwork/streamRefresh.js'  %}"></script>
-    <script src="{% static 'socialnetwork/customanimations.js'  %}"></script>
-    
     <title>UQ</title>
-    <link rel="shortcut icon" href="https://s3.amazonaws.com/wittyerphotos/wittyer.ico"/>
   </head>
   
   <nav class="navbar navbar-inverse navbar-fixed-top" >
@@ -37,7 +31,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
 	</button>
-	<a class="navbar-brand" href="{% url 'home' %}"></a>
+
       </div>
       
       
@@ -95,9 +89,20 @@
     <div class="container">
       <div class="col-md-2"></div>
       <div class="col-md-8">
+	<form action="{% url 'playLink' %}" autocomplete="off" method="post">
+	   {% csrf_token %}
+	  <div class="input-group">
+	    <input type="text" class="form-control" placeholder="Search for..." name="link">
+	    <span class="input-group-btn">
+              <button class="btn btn-inverse btn-sm" type="submit">Go!</button>
+	    </span>
+	  </div><!-- /input-group -->
+	</form>
+	<br/>
+	
 	<div class="text-center well">
 	  <iframe id="ytplayer" type="text/html" width="640" height="360"
-		  src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
+		  src="{{videoUrl}}"
 		  frameborder="0"/>
 	</div>
       </div>

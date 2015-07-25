@@ -25,7 +25,16 @@ from django.core.mail import send_mail
 from django.contrib.auth.tokens import default_token_generator
 from datetime import datetime
 
-def home(request):
+def home(request ):
     context = {}
+    context['videoUrl'] = "https://www.youtube.com/embed/lp-EO5I60KA?autoplay=true"
     return render(request, 'UQ/home.html', context)
-
+    
+def playLink(request):
+    context = {}
+    url = request.POST['link']
+    url = url.replace('watch?v=','embed/')
+    url = url + "?autoplay=true"
+    context['videoUrl'] = url
+    print url
+    return render(request, 'UQ/home.html', context)
