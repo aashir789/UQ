@@ -1,2 +1,2 @@
 # UQ
-A private shared youtube playlist between friends. 
+An awesome private shared youtube playlist between friends. 
