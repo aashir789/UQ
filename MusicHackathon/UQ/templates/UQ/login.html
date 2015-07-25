@@ -84,69 +84,27 @@
     </h2>
   </div>
   
-  
   <body>
-    <div class="container">
-      <div class="col-md-2">
-	
-      </div>
-      <div class="col-md-8">
-	<form action="{% url 'playLink' %}" autocomplete="off" method="post">
-	   {% csrf_token %}
-	  <div class="input-group">
-	    <input type="text" class="form-control" placeholder="Search for..." name="link">
-	    <span class="input-group-btn">
-              <button class="btn btn-inverse btn-sm" type="submit">Go!</button>
-	    </span>
-	  </div><!-- /input-group -->
-	</form>
+
+    <form method="post" action="{% url 'home' %}" autocomplete="off">
+      {% csrf_token %}
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+	<div class="form-control-wrapper">
+	  <input class="form-control" type="text" name="login" placeholder="Group Name " autocomplete="off" >
+	  <span class="material-input"></span>
+	</div>
 	<br/>
-	
-	<div class="text-center well">
-	  <iframe id="ytplayer" type="text/html" width="540" height="360"
-		  src="{{videoUrl}}" frameborder="0"></iframe>
+	<div class="form-control-wrapper">
+	  <input class="form-control" type="password" name="password" placeholder="Password" autocomplete="off" >
+	  <span class="material-input"></span>
 	</div>
-	
-	<div class="well">
-	  <div class="list-group">
-
-	    <li class="list-group-item"><b>Thinking out loud</b>
-	      <span style="float:right"><small>
-		<a href="javascript:void(0)" class="btn btn-primary btn-raised btn-xs">Up</a>
-		<a href="javascript:void(0)" class="btn btn-danger  btn-raised btn-xs ">Down</a></small>
-	      </span>
-	    </li>
-
-	    <li class="list-group-item"><b>Dapibus ac facilisis in</b>
-	      <span style="float:right"><small>
-		<a href="javascript:void(0)" class="btn btn-primary btn-raised btn-xs">Up</a>
-		<a href="javascript:void(0)" class="btn btn-danger  btn-raised btn-xs ">Down</a></small>
-	      </span>
-	    </li>
-	    
-	    <li class="list-group-item"><b>Dapibus ac facilisis in</b>
-	      <span style="float:right"><small>
-		<a href="javascript:void(0)" class="btn btn-primary btn-raised btn-xs">Up</a>
-		<a href="javascript:void(0)" class="btn btn-danger  btn-raised btn-xs ">Down</a></small>
-	      </span>
-	    </li>
-
-	    <li class="list-group-item"><b>Dapibus ac facilisis in</b>
-	      <span style="float:right"><small>
-		<a href="javascript:void(0)" class="btn btn-primary btn-raised btn-xs">Up</a>
-		<a href="javascript:void(0)" class="btn btn-danger  btn-raised btn-xs ">Down</a></small>
-	      </span>
-	    </li>
-
-
-	  </div>
-	</div>
+	<br/>
+	<button class="btn btn-info" type="submit" value="Login">Login</button>
+	<a type="button" class="btn btn-success" href="{% url 'home' %}">Register</a>
       </div>
-      
-      <div class="col-md-2"></div>
-      
-      
-    </div>
+  <div class="col-sm-4"></div>
+  
+    </form>
   </body>
 </html>
-
