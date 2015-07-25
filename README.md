@@ -1,2 +1,2 @@
 # UQ
-A private shared playlist for creating youtube 
+A private shared youtube playlist between friends. 
