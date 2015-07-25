@@ -24,10 +24,14 @@ from time import mktime
 from django.core.mail import send_mail
 from django.contrib.auth.tokens import default_token_generator
 from datetime import datetime
+from UQ.models import *
+
 
 def home(request ):
     context = {}
     context['videoUrl'] = "https://www.youtube.com/embed/lp-EO5I60KA?autoplay=true"
+    group = Group(group_name="group1", group_pw="password")
+    group.save()
     return render(request, 'UQ/home.html', context)
     
 def playLink(request):
@@ -36,5 +40,10 @@ def playLink(request):
     url = url.replace('watch?v=','embed/')
     url = url + "?autoplay=true"
     context['videoUrl'] = url
-    print url
+
+    group = Group.objects.get(group_name="group1")
+    song = Song(song_name="default", song_url=url, song_score=0, song_group=group)
+    song.save()
+
+    print Song.objects.all()
     return render(request, 'UQ/home.html', context)
