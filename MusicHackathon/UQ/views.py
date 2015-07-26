@@ -29,29 +29,27 @@ from UQ.models import *
 
 def home(request ):
     context = {}
-    context['videoUrl'] = "https://www.youtube.com/embed/lp-EO5I60KA?autoplay=true"
     if (Group.objects.all() == None ):
         group = Group(group_name="group1", group_pw="password")
         group.save()
     group = Group.objects.all()[1]
-    songList = Song.objects.filter(song_group=group)
-    print songList
-    context['songs'] = songList
+    
+    sortedSongs = Song.objects.order_by('-song_score','song_url')
+    context['songs'] = sortedSongs
     return render(request, 'UQ/home.html', context)
     
 def playLink(request):
     context = {}
     url = request.POST['link']
-    url = url.replace('watch?v=','embed/')
-    url = url + "?autoplay=true"
-    context['videoUrl'] = url
-
+    vid = url.rsplit("=")[1]
+    context['videoID'] = vid
     group = Group.objects.all()[1]
-    
     song = Song(song_name="default", song_url=url, song_score=0, song_group=group)
     song.save()
-    print Song.objects.all()
-    return render(request, 'UQ/home.html', context)
+
+    sortedSongs = Song.objects.order_by('-song_score','song_url')
+    context['songs'] = sortedSongs
+    return redirect(reverse( 'home'))
 
 def upVote(request,id):
     print 'in here'
@@ -62,7 +60,7 @@ def upVote(request,id):
     print song.song_url
     print song.song_score
     song.save()
-    return HttpResponse(status=200)
+    return redirect(reverse('home'))
 
 def downVote(request, id):
     song_id = id
@@ -71,4 +69,17 @@ def downVote(request, id):
     print song.song_url
     print song.song_score
     song.save()
-    return HttpResponse(status=200)
+    songList = Song.objects.filter(song_group=group)
+    sortedSongs = Song.objects.order_by('song_score','song_url') 
+    context['songs'] = songList
+    return redirect(reverse('home'))
+
+
+def getVID(request):
+    max_score_list = Song.objects.order_by('-song_score', 'song_url')
+    bestsong = str(max_score_list[0])
+    dick = [{'id':bestsong.rsplit('=')[1]}]
+    return HttpResponse(json.dumps(dick),content_type='application/json')
+
+
+
